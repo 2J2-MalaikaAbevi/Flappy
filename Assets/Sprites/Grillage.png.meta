@@ -167,7 +167,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Grillage_0: -4567628403370903252
+      Grillage_1: 4978967334890169599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

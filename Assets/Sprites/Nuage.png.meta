@@ -191,7 +191,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nuage_0: 3319464974782143987
+      Nuage_1: -7328047711960633687
+      Nuage_2: -5454511899581935230
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
