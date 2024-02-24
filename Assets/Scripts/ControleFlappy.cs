@@ -100,7 +100,7 @@ public class ControleFlappy : MonoBehaviour
             infoCollision.gameObject.transform.localPosition = new Vector2(-4, valeurAleatoireY);
 
             //Puis, on appelle une fonction qui servira a faire réapparaitre le pack de vie au bout de 6 secondes, le temps que la colonne sorte du décor
-            Invoke("ReactiverPackVie", 7f);
+            Invoke("ReactiverPackVie", 6f);
         }
 
         //On vérifie si un collision est détectée avec le champignon
