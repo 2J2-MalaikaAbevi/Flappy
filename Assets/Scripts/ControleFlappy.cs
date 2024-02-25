@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* Fonctionnement et utilité générale du script:
-   Gestion des déplacements horizontaux et du saut de Flappy à l'aide des touches : a ou flèche gauche, d ou flèche haut, w ou flèche droite.
-   Gestion des détections de collisions entre le personnage et les objets du jeu.
+   Gestion des déplacements horizontaux et du saut de Flappy à l'aide des touches : Left (ou A), Right (ou D) et Up (ou W).
+   Gestion des détections des collisions entre le personnage et les objets du jeu.
    Par : Malaïka Abevi
-   Dernière modification : 24/02/2024
+   Dernière modification : 25/02/2024
 */
 
 public class ControleFlappy : MonoBehaviour
@@ -22,10 +22,10 @@ public class ControleFlappy : MonoBehaviour
     public GameObject lePackVie;  //Le game object du pack de vie
     public GameObject leChampignon;  //Le game object du champignon
 
-    // Fonction qui gère les déplacements et le saut de Flappy à l'aide des touches Right (ou A), Left (ou D) et Up (ou W).
+    // Fonction qui gère les déplacements et le saut de Flappy à l'aide des touches Left (ou A), Right (ou D) et Up (ou W).
     void Update()
     {
-        //On ajuste la variable vitesseX si la touche Right (ou A) ou Left (ou D) est appuyée
+        //On ajuste la variable vitesseX si la touche Left (ou A) ou Right (ou D) est appuyée. (avec GetKey, on peut maintenir la touche enfoncé et Flappy avance/recule)
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             vitesseX = -0.5f;
@@ -41,12 +41,12 @@ public class ControleFlappy : MonoBehaviour
             vitesseX = GetComponent<Rigidbody2D>().velocity.x;
         }
 
-        //On ajuste la variable vitesseY si la touche Up (ou W) est appuyée
+        //On ajuste la variable vitesseY si la touche Up (ou W) est appuyée. (avec GetKeyDown, il faut réappuyer sur la touche pour que Flappy saute d'avantage)
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             vitesseY = 3.5f;
         }
-        //On ajuste la variable vitesseY avec la vélocité en Y pour faire un arret plus naturel
+        //On ajuste la variable vitesseY avec la vélocité en Y pour faire un arrêt plus naturel
         else
         {
             vitesseY = GetComponent<Rigidbody2D>().velocity.y;
@@ -66,7 +66,7 @@ public class ControleFlappy : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = flappyMalade;
         }
 
-        //On vérifie si un collision est détectée avec la pièce
+        //On vérifie si un collision est détectée avec la pièce d'or
         if(infoCollision.gameObject.name == "PieceOr")
         {    
             /*print(infoCollision.gameObject.name); Test pour vérifier la détection*/
@@ -79,8 +79,8 @@ public class ControleFlappy : MonoBehaviour
             //On donne alors de nouvelles coordonnées avec une position X fixe et la valeur aléatoire qui a été générée
             infoCollision.gameObject.transform.localPosition = new Vector2(-4, valeurAleatoireY);
 
-            //Puis, on appelle une fonction qui servira a faire réapparaitre la pièce d'or au bout de 6 secondes, le temps que la colonne sorte du décor
-            Invoke("ReactiverPieceOr", 6f);
+            //Puis, on appelle une fonction qui servira a faire réapparaitre la pièce d'or au bout de 7 secondes, le temps que la colonne sorte du décor
+            Invoke("ReactiverPieceOr", 7f);
         }
 
         //On vérifie si un collision est détectée avec le pack de vie
@@ -99,8 +99,8 @@ public class ControleFlappy : MonoBehaviour
             //On donne alors de nouvelles coordonnées avec une position X fixe et la valeur aléatoire qui a été générée
             infoCollision.gameObject.transform.localPosition = new Vector2(-4, valeurAleatoireY);
 
-            //Puis, on appelle une fonction qui servira a faire réapparaitre le pack de vie au bout de 6 secondes, le temps que la colonne sorte du décor
-            Invoke("ReactiverPackVie", 6f);
+            //Puis, on appelle une fonction qui servira a faire réapparaitre le pack de vie au bout de 7 secondes, le temps que la colonne sorte du décor
+            Invoke("ReactiverPackVie", 7f);
         }
 
         //On vérifie si un collision est détectée avec le champignon
@@ -118,8 +118,9 @@ public class ControleFlappy : MonoBehaviour
             //On donne alors de nouvelles coordonnées avec une position X fixe et la valeur aléatoire qui a été générée
             infoCollision.gameObject.transform.localPosition = new Vector2(-4, valeurAleatoireY);
 
-            //Puis, on appelle une fonction qui servira a faire réapparaitre le champignon au bout de 6 secondes, le temps que la colonne sorte du décor
-            Invoke("ReactiverChampignon", 6f);
+            /*Puis, on appelle une fonction qui servira a faire réapparaitre le champignon et à rendre 
+             la taille d'origine à Flappy au bout de 7 secondes, le temps que la colonne sorte du décor*/
+            Invoke("ReactiverChampignon", 7f);
         }
     }
 
@@ -137,7 +138,7 @@ public class ControleFlappy : MonoBehaviour
         lePackVie.SetActive(true);
     }
 
-    //Fonction pour réactiver le champignon (game object)
+    //Fonction pour réactiver le champignon (game object) et rodonner la taille d'origine à Flappy
     void ReactiverChampignon()
     {
         //Réactivation du champignon
