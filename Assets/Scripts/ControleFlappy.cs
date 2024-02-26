@@ -22,6 +22,11 @@ public class ControleFlappy : MonoBehaviour
     public GameObject lePackVie;  //Le game object du pack de vie
     public GameObject leChampignon;  //Le game object du champignon
 
+    public AudioClip sonCol;  //Le son de la collision avec une colonne
+    public AudioClip sonOr;  //Le son de la collision avec la pièce d'or
+    public AudioClip sonPack;  //Le son de la collision avec le pack de vie
+    public AudioClip sonChamp;  //Le son de la collision avec le chamnpignon
+
     // Fonction qui gère les déplacements et le saut de Flappy à l'aide des touches Left (ou A), Right (ou D) et Up (ou W).
     void Update()
     {
@@ -64,6 +69,9 @@ public class ControleFlappy : MonoBehaviour
         {
             //On donne alors une image de Flappy malade qui remplacera l'image de base de Flappy 
             GetComponent<SpriteRenderer>().sprite = flappyMalade;
+
+            //Son pour la collision avec  la colonne
+            GetComponent<AudioSource>().PlayOneShot(sonCol);
         }
 
         //On vérifie si un collision est détectée avec la pièce d'or
