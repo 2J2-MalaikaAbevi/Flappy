@@ -155,4 +155,5 @@ public class ControleFlappy : MonoBehaviour
         //On redonne la taille d'origine à Flappy en la diminuant de 50%
         transform.localScale /= 1.5f;
     }
+
 }
