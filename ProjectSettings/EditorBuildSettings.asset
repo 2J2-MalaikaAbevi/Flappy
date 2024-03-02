@@ -6,7 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/sceneFlappy_1.unity
+    guid: 4edca305166f1a044aefacec4512f388
+  - enabled: 1
     path: Assets/Scenes/sceneFlappy_2.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/sceneFlappy_3.unity
+    guid: 50911d197b29c3e4b91a4e3668be292d
+  - enabled: 1
+    path: Assets/Scenes/sceneFlappy_4.unity
+    guid: 4a8b409cf32e532488a9549b15c9b8e0
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
