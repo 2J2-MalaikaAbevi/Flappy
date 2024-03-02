@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +36,13 @@ public class ControleFlappy : MonoBehaviour
 
     bool flappyBlesse = false;  //La variable booléenne pour le statut de Flappy, blessé ou non 
     bool partieTerminee = false;  //La variable booléenne pour le statut de la partie, terminée ou non
+
+    public TextMeshProUGUI pointage;  //Le texte pour le pointage
+    public TextMeshProUGUI messageFinPartie; //Le texte pour le message de fin de partie
+
+    int leScore; //Variable pour le calcul du pointage
+
+    Color transparenceMessageFin; //Variable pour la gestion de la couleur du texte de fin 
 
     // Fonction qui gère les déplacements et le saut de Flappy à l'aide des touches Left (ou A), Right (ou D) et Up (ou W).
     void Update()
@@ -101,15 +109,37 @@ public class ControleFlappy : MonoBehaviour
             // On ajuste la vélocité du personnage en lui attribuant les valeurs des variables de vitesse X et Y
             GetComponent<Rigidbody2D>().velocity = new Vector2(vitesseX, vitesseY);        
         }
-        
+
+        //On gère le message de fin de la partie
+        if (partieTerminee)
+        {
+            //On réactive le texte pour le message de fin 
+            messageFinPartie.enabled = true;
+            //On enregistre la couleur du texte dans la variable Color "transparence"
+            transparenceMessageFin = messageFinPartie.color;
+            //Puis, on modifie le niveau de transparence du texte de transparent à opaque graduellement
+            transparenceMessageFin.a += 0.005f;
+            //Puis on réapplique la nouvelle valeur de couleur
+            messageFinPartie.color = transparenceMessageFin;
+
+            //On augmente la taille de la police jusqu'à ce qu'elle atteigne 100
+            if (messageFinPartie.fontSize < 100)
+            {
+                messageFinPartie.fontSize += 0.3f;
+            }
+        }
+
     }
 
     //Fonction pour la détection des collisions avec les objets et Flappy, puis des actions qui se produiront suite à une collision
     void OnCollisionEnter2D(Collision2D infoCollision)
     {
-        //On vérifie si une collision est détectée avec une colonne
-        if(infoCollision.gameObject.name == "ColonneHaut" || infoCollision.gameObject.name == "ColonneBas")
+        //On vérifie si une collision est détectée avec une colonne ou avec les extremités du décor
+        if(infoCollision.gameObject.name == "ColonneHaut" || infoCollision.gameObject.name == "ColonneBas" || infoCollision.gameObject.name == "Decor")
         {
+            //On soustrait 5 points dans la variable du score
+            leScore -= 5;
+
             //On vérifie si Flappy est en santé lors de la collision
             //Si oui:
             if (!flappyBlesse)
@@ -141,7 +171,7 @@ public class ControleFlappy : MonoBehaviour
 
                 //Puis, après 5s, on appelle la fonction qui gère le relancement de la partie
                 Invoke("Rejouer", 5f);
-            }
+                }
 
             //Son pour la collision avec la colonne
             GetComponent<AudioSource>().PlayOneShot(sonCol);
@@ -150,6 +180,9 @@ public class ControleFlappy : MonoBehaviour
         //On vérifie si un collision est détectée avec la pièce d'or
         if(infoCollision.gameObject.name == "PieceOr")
         {
+            //On additionne 5 points dans la variable du score
+            leScore += 5;
+
             //On désactive alors la pièce d'or (le game object)
             infoCollision.gameObject.SetActive(false);
 
@@ -169,6 +202,12 @@ public class ControleFlappy : MonoBehaviour
         //On vérifie si un collision est détectée avec le pack de vie
         if (infoCollision.gameObject.name == "PackVie")
         {
+            //On additionne 5 points dans la variable du score
+            leScore += 5;
+
+            //On enregistre que Flappy est maintenant en santé en rendant cette variable à false
+            flappyBlesse = false;
+
             /*On donne (ou redonne) alors une image de Flappy de base qui remplacera l'image de Flappy malade 
              (ou elle demeure la même si Flappy n'était pas malade puisque c'est la même image)*/
             GetComponent<SpriteRenderer>().sprite = flappyBase;
@@ -192,6 +231,9 @@ public class ControleFlappy : MonoBehaviour
         //On vérifie si un collision est détectée avec le champignon
         if (infoCollision.gameObject.name == "Champignon")
         {
+            //On additionne 10 points dans la variable du score
+            leScore += 10;
+
             //On grossit la taille de Flappy de 50%
             transform.localScale *= 1.5f;
 
@@ -211,6 +253,9 @@ public class ControleFlappy : MonoBehaviour
              la taille d'origine à Flappy au bout de 7 secondes, le temps que la colonne sorte du décor*/
             Invoke("ReactiverChampignon", 7f);
         }
+
+        //On redéfinit le texte du pointage avec la valeur de score enregistée
+        pointage.text = "POINTAGE : " + leScore.ToString();
     }
 
     //Fonction pour réactiver la pièce d'or (game object)
@@ -240,7 +285,7 @@ public class ControleFlappy : MonoBehaviour
     //Fonction pour rejouer une partie en relancant la scène
     void Rejouer()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
 }
