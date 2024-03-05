@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
    Gestion des sons
    Gestion de la fin de la partie
    Par : Malaïka Abevi
-   Dernière modification : 02/03/2024
+   Dernière modification : 05/03/2024
 */
 
 public class ControleFlappy : MonoBehaviour
@@ -27,6 +27,7 @@ public class ControleFlappy : MonoBehaviour
     public GameObject laPieceOr;  //Le game object de la pièce d'or
     public GameObject lePackVie;  //Le game object du pack de vie
     public GameObject leChampignon;  //Le game object du champignon
+    public GameObject laGrille; //Le game object de la grille 
 
     public AudioClip sonCol;  //Le son de la collision avec une colonne
     public AudioClip sonOr;  //Le son de la collision avec la pièce d'or
@@ -195,6 +196,12 @@ public class ControleFlappy : MonoBehaviour
             //Son pour la collision avec la pièce d'or
             GetComponent<AudioSource>().PlayOneShot(sonOr);
 
+            //On active l'animation de la grille
+            laGrille.GetComponent<Animator>().enabled = true;
+
+            //Après 4 secondes, on appelle une fonction qui désactivera à nouveau l'animation de la grille
+            Invoke("ReactiverAnimGrille", 4f);
+
             //Puis, on appelle une fonction qui servira a faire réapparaitre la pièce d'or au bout de 7 secondes, le temps que la colonne sorte du décor
             Invoke("ReactiverPieceOr", 7f);
         }
@@ -256,6 +263,12 @@ public class ControleFlappy : MonoBehaviour
 
         //On redéfinit le texte du pointage avec la valeur de score enregistée
         pointage.text = "POINTAGE : " + leScore.ToString();
+    }
+
+    //Fonction pour désactiver l'animation de la grille 
+    void ReactiverAnimGrille()
+    {
+        laGrille.GetComponent<Animator>().enabled = false;
     }
 
     //Fonction pour réactiver la pièce d'or (game object)
