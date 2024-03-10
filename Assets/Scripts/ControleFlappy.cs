@@ -167,14 +167,14 @@ public class ControleFlappy : MonoBehaviour
                 //On désactive le collider de Flappy, donc il passe à travers tout
                 GetComponent<Collider2D>().enabled = false;
 
-                //On fait jouer le son de la fin de la partie et on réduit le volume car le son de base est trop forte
+                //On fait jouer le son de la fin de la partie et on réduit le volume car le son de base est trop fort
                 GetComponent<AudioSource>().PlayOneShot(sonFinPartie, 0.5f);
 
                 //Puis, après 5s, on appelle la fonction qui gère le relancement de la partie
                 Invoke("Rejouer", 5f);
                 }
 
-            //Son pour la collision avec la colonne et on réduit le volume car le son de base est trop forte
+            //Son pour la collision avec la colonne et on réduit le volume car le son de base est trop fort
             GetComponent<AudioSource>().PlayOneShot(sonCol, 0.5f);
         }
 
@@ -193,7 +193,7 @@ public class ControleFlappy : MonoBehaviour
             //On donne alors de nouvelles coordonnées avec une position X fixe et la valeur aléatoire qui a été générée
             infoCollision.gameObject.transform.localPosition = new Vector2(-4, valeurAleatoireY);
 
-            //Son pour la collision avec la pièce d'or et on réduit le volume car le son de base est trop forte
+            //Son pour la collision avec la pièce d'or et on réduit le volume car le son de base est trop fort
             GetComponent<AudioSource>().PlayOneShot(sonOr, 0.5f);
 
             //On active l'animation de la grille
@@ -253,7 +253,7 @@ public class ControleFlappy : MonoBehaviour
             //On donne alors de nouvelles coordonnées avec une position X fixe et la valeur aléatoire qui a été générée
             infoCollision.gameObject.transform.localPosition = new Vector2(-4, valeurAleatoireY);
 
-            //Son pour la collision avec le champignon et on réduit le volume car le son de base est trop forte
+            //Son pour la collision avec le champignon et on réduit le volume car le son de base est trop fort
             GetComponent<AudioSource>().PlayOneShot(sonChamp, 0.5f);
 
             /*Puis, on appelle une fonction qui servira a faire réapparaitre le champignon et à rendre 
