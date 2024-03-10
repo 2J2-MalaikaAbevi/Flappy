@@ -433,9 +433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3207c08823c6a7409d3873b6b87e50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: -0.003
-  positionFin: -12
-  positionDebut: 12
+  vitesse: -0.002
+  positionFin: -11
+  positionDebut: 13
   deplacementAleatoire: 3
 --- !u!1 &270631832
 GameObject:
@@ -876,9 +876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3207c08823c6a7409d3873b6b87e50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: -0.003
-  positionFin: -12
-  positionDebut: 12
+  vitesse: -0.002
+  positionFin: -11
+  positionDebut: 13
   deplacementAleatoire: 3
 --- !u!4 &371126240
 Transform:
@@ -1370,7 +1370,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 52.3}
+  m_AnchoredPosition: {x: 0, y: 23.9}
   m_SizeDelta: {x: 589.1, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830927880
@@ -1420,8 +1420,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.6
-  m_fontSizeBase: 68.6
+  m_fontSize: 48.79
+  m_fontSizeBase: 48.79
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2363,7 +2363,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 421aaf5846cb8b94588bc91db975b03d, type: 3}
   m_Resource: {fileID: 8300000, guid: 421aaf5846cb8b94588bc91db975b03d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.83
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3207c08823c6a7409d3873b6b87e50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: -0.002
+  vitesse: -0.0015
   positionFin: -12
   positionDebut: 12
   deplacementAleatoire: 2
@@ -2979,9 +2979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3207c08823c6a7409d3873b6b87e50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: -0.003
-  positionFin: -12
-  positionDebut: 12
+  vitesse: -0.002
+  positionFin: -11
+  positionDebut: 13
   deplacementAleatoire: 3
 --- !u!4 &2107113611
 Transform:
@@ -3166,7 +3166,7 @@ SceneRoots:
   - {fileID: 244801881}
   - {fileID: 371126240}
   - {fileID: 2107113611}
-  - {fileID: 1448609035}
   - {fileID: 1544680478}
+  - {fileID: 1448609035}
   - {fileID: 1984741180}
   - {fileID: 1596568892}
